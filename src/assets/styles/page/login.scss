@@ -1,0 +1,97 @@
+.login {
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    &-box {
+        width: 25rem;
+        background-color: #fff;
+        border-radius: 1rem;
+        box-shadow: 0 0 1rem #ccc;
+        overflow: hidden;
+    }
+
+    &-image {
+        height: 8rem;
+        width: 100%;
+        object-fit: cover;
+
+        img {
+            height: 8rem;
+            width: 100%;
+            object-fit: cover;
+        }
+    }
+
+    &-tab {
+        display: flex;
+        align-items: center;
+        height: 3rem;
+        cursor: pointer;
+    
+        &__login {
+            height: 100%;
+            width: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin: 0 1rem;
+        }
+
+        &__signup {
+            height: 100%;
+            width: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin: 0 1rem;
+
+        }
+
+        &__active {
+            border-bottom: 2px solid #8B77E8;
+            color: #8B77E8;
+        }
+    }
+
+    .form {
+        padding: 2rem 3rem;
+    }
+    .form-group {
+        display: flex;
+        flex-direction: column;
+        margin-bottom: 1.5rem;
+        position: relative;
+
+        label {
+            margin-bottom: 0.5rem;
+        }
+
+
+        img {
+            width: 1.5rem;
+            position: absolute;
+            top: 25%;
+            left: 5px;
+        }
+    }
+
+    .form-button {
+        background-color: #8B77E8;
+        height: 2.5rem;
+        border-radius: 5px;
+        outline: none;
+        border: 1px solid #8B77E8;
+        width: 100%;
+        color: #fff;
+        cursor: pointer;
+
+        &:hover {
+            background-color: #fff;
+            color: #8B77E8;
+        }
+    }
+
+
+}

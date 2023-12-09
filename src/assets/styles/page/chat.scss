@@ -1,0 +1,148 @@
+.chat {
+  background-color: #33333364;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  &-container {
+    margin: 0 5rem;
+    width: 1200px;
+    height: 90%;
+    border-radius: 1rem;
+    // padding: 1rem;
+    background-color: #fff;
+    display: flex;
+    overflow: hidden;
+  }
+  
+  &-search {
+    padding-right: 1rem;
+  }
+
+  &-conversation {
+    width: 30%;
+    display: flex;
+    flex-direction: column;
+    background-color: #F5F5F8;
+    padding: 1rem 0 1rem 1rem;
+
+    .form-group {
+      display: flex;
+      flex-direction: column;
+      margin-bottom: 1.5rem;
+      position: relative;
+      margin: 1rem 0 1.5rem 0;
+
+      img {
+        width: 1.5rem;
+        position: absolute;
+        top: 25%;
+        left: 5px;
+      }
+    }
+
+    .chat-list {
+      flex-grow: 1;
+      overflow-y: scroll;
+      border-bottom: 1px solid #ccc;
+
+      &__user {
+        display: flex;
+        align-items: center;
+        padding: 0.5rem;
+        border-radius: 1rem;
+        cursor: pointer;
+
+        &:hover {
+          background-color: #ccc;
+        }
+
+        &--img {
+          width: 3rem;
+          height: 3rem;
+          border-radius: 50%;
+          overflow: hidden;
+          margin-right: 0.5rem;
+          img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+          }
+        }
+
+        &--message {
+          width: 100%;
+        }
+
+        &--top {
+          display: flex;
+          margin-bottom: 0.5rem;
+        }
+
+        &--name {
+          flex-grow: 1;
+        }
+
+        &--content {
+          font-weight: 200;
+        }
+      }
+
+      &__me {
+        display: flex;
+        align-items: center;
+        padding: 0.5rem;
+        border-radius: 1rem;
+
+        &--img {
+          width: 3rem;
+          height: 3rem;
+          border-radius: 50%;
+          overflow: hidden;
+          margin-right: 0.5rem;
+          img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+          }
+        }
+
+        &--body {
+          flex-grow: 1;
+        }
+
+        &--name {
+          flex-grow: 1;
+        }
+
+        &--status {
+          font-weight: 200;
+        }
+
+        &--logout {
+          display: flex;
+          align-items: center;
+          color: red;
+          font-weight: 200;
+          cursor: pointer;
+
+          img {
+            width: 1rem;
+            margin-right: 0.2rem;
+          }
+        }
+      }
+    }
+  }
+
+}
+
+::-webkit-scrollbar {
+  width: 2px;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #888; 
+}
