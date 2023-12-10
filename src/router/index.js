@@ -2,6 +2,7 @@ import { createBrowserRouter } from "react-router-dom";
 import App from "../App";
 import Login from "../page/login";
 import Chat from "../page/chat";
+import Conversation from "../page/conversation";
 
 const router = createBrowserRouter([
     {
@@ -14,7 +15,13 @@ const router = createBrowserRouter([
             },
             {
                 path: "/chat",
-                element: <Chat></Chat>  
+                element: <Chat></Chat>,
+                children: [
+                    {
+                        path: "/chat/:chat_id",
+                        element: <Conversation></Conversation>  
+                    },
+                ]
             }
         ]
     }

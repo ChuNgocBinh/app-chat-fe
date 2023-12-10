@@ -1,3 +1,5 @@
+import { Outlet } from "react-router-dom"
+
 function Chat() {
   return (
     <div className="chat">
@@ -203,7 +205,7 @@ function Chat() {
           </div>
         </div>
         <div className="chat-content">
-          chat content
+          <Outlet></Outlet>
         </div>
       </div>
     </div>
