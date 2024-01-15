@@ -1,7 +1,32 @@
 import { useState } from "react"
+import { login, signup } from "../../services"
+import { useNavigate } from "react-router-dom"
 
 function Login() {
     const [tab, setTab] = useState(1)
+    const [username, setUsername] = useState()
+    const [password, setPassword] = useState()
+    const navigate = useNavigate();
+
+    const handleSubmitForm = async (e) => {
+        e.preventDefault()
+        const data = {
+            username,
+            password     
+        }
+        let res
+        try {
+            if(tab === 1){
+                res = await login(data)
+                localStorage.setItem('token', res.data.token)
+                navigate('/chat')
+            }else {
+                res = await signup(data)
+            } 
+        } catch (error) {
+            console.log(error);
+        }
+    }
 
     return (
         <div className="login">
@@ -15,14 +40,23 @@ function Login() {
                         <div className={`login-tab__signup ${tab === 2 ? "login-tab__active" : ""}`} onClick={() => setTab(2)}>Signup</div>
                     </div>
 
-                    <form className="form">
+                    <form className="form" onSubmit={handleSubmitForm}>
                         <div className="form-group">
                             <img src="/images/user.svg" alt="user"></img>
-                            <input className="input" placeholder="Username"></input>
+                            <input
+                                className="input"
+                                placeholder="Username"
+                                onChange={(e) => setUsername(e.target.value)}
+                            ></input>
                         </div>
                         <div className="form-group">
                             <img src="/images/key.svg" alt="key"></img>
-                            <input className="input" type="password" placeholder="Password"></input>
+                            <input
+                                className="input"
+                                type="password"
+                                placeholder="Password"
+                                onChange={(e) => setPassword(e.target.value)}
+                            ></input>
                         </div>
                         <button className="form-button">Confirm</button>
                     </form>

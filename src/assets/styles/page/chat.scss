@@ -19,6 +19,7 @@
   
   &-search {
     padding-right: 1rem;
+    position: relative;
   }
 
   &-content {
@@ -140,6 +141,15 @@
           }
         }
       }
+    }
+
+    .chat-result {
+      background-color: #fff;
+      position: absolute;
+      width: 100%;
+      margin-right: 1rem;
+      max-height: 20rem;
+      min-height: 5rem;
     }
   }
 

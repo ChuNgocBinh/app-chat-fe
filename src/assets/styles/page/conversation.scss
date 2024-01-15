@@ -32,6 +32,11 @@
       margin-bottom: 1rem;
     }
 
+    // &-list {
+    //   display: flex;
+    //   flex-direction: column;
+    // }
+
     &-content {
       display: inline-block;
       background-color: #ccc;
@@ -45,21 +50,25 @@
     }
 
     &-time {
-      display: flex;
-      align-items: center;
+      // display: flex;
+      // align-items: center;
       margin-top: 0.2rem;
       padding-left: 1rem;
       img {
         width: 0.7rem;
+        padding-right: 0.2rem;
       }
 
-      >div {
+      >span {
         font-size: small;
       }
     }
 
     &-me {
-      float: right;
+      text-align: end;
+      // display: flex;
+      // justify-content: flex-end;
+      // flex-direction: column;
     }
   }
 
