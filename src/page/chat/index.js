@@ -11,8 +11,7 @@ function Chat() {
   const navigate = useNavigate();
   const [listUser, setListuser] = useState([])
   const [listChat, setListChat] = useState([])
-  const {setChatCurrent, user} = useContext(UserContext);
-  console.log(user);
+  const { user} = useContext(UserContext);
   const debounced = useDebouncedCallback(async (text) => {
     try {
       setIsShow(true)
@@ -24,7 +23,6 @@ function Chat() {
   }, 2000);
 
   const handleClickChat = async (id) => {
-    console.log(id);
     const chats = await getChat({
       member_id: id
     })
@@ -48,7 +46,7 @@ function Chat() {
   }
 
   const handleChat = (el) => {
-    setChatCurrent(el)
+    // setChatCurrent(el)
     navigate(`/chat/${el.id}`)
   }
 

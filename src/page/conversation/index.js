@@ -1,14 +1,25 @@
 import { useContext, useEffect, useState } from "react";
 import { UserContext } from "../../App";
-import { createMessage, getMessages } from "../../services";
+import { createMessage, getChatDetail, getMessages } from "../../services";
 import { useParams } from "react-router-dom";
 import moment from "moment";
+import { useListen } from "../../components/socket";
 
 function Conversation() {
-    const { chat_current, user } = useContext(UserContext);
+    const { chat_current, user, setChatCurrent } = useContext(UserContext);
     const [text, setText] = useState('')
     const [listMessage, setListMessage] = useState([])
     const params = useParams()
+
+    const fetchChatDetail = async () =>{
+        const detailChat =  await getChatDetail(params.chat_id)
+        console.log('detailChat', detailChat);
+        setChatCurrent(detailChat?.data)
+    }
+
+    useEffect(()=> {
+        fetchChatDetail()
+    },[])
 
     const handleClickSubmit = async (e) => {
         try {
@@ -18,9 +29,9 @@ function Conversation() {
             setListMessage([
                 ...listMessage,
                 newMessage.data
-            ]) 
+            ])
         } catch (error) {
-           console.log(error); 
+            console.log(error);
         }
     }
 
@@ -29,13 +40,20 @@ function Conversation() {
             const messages = await getMessages(params.chat_id)
             setListMessage(messages.data)
         } catch (error) {
-           console.log(error); 
+            console.log(error);
         }
     }
 
     useEffect(() => {
         fetchListMessage()
     }, [])
+    
+    const handlRenderMessage = (message) => {
+        console.log('message', message);
+        setListMessage(prev => [...prev, message])
+    }
+    
+    useListen('message',handlRenderMessage)
 
     return (
         <div className="conversation">

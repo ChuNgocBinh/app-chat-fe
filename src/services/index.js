@@ -79,3 +79,12 @@ export const getMessages = async (chat_id) => {
     })
     return result
 }
+
+
+export const getChatDetail = async (chat_id) => {
+    const result = await axios({
+        url: URL + `/chat/detail/${chat_id}`,
+        method: 'get',
+    })
+    return result
+}

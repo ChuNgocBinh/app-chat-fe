@@ -1,7 +1,8 @@
 import { createContext, useEffect, useState } from 'react';
 import { Outlet, useNavigate } from 'react-router-dom';
-import { getMe } from './services';
+import { getChatOfMe, getMe } from './services';
 import event from 'events'
+import { useSocket } from './components/socket';
 export const UserContext = createContext();
 
 export const emitter = new event.EventEmitter()
@@ -10,6 +11,7 @@ function App() {
   const [user, setUser] = useState(null);
   const [chatCurrent, setChatCurrent] = useState(null);
   const navigate = useNavigate();
+  const { isConnected, socketRef } = useSocket()
 
   const fetchUserInfo = async () => {
     try {
@@ -19,11 +21,30 @@ function App() {
       console.log(error)
     }
   }
+
+  const getChats = async () => {
+    try {
+      const userChat = await getChatOfMe()
+      if (isConnected) {
+        userChat.data.forEach(el => {
+          socketRef.emit('join_chat', el.id)
+        });
+      }
+    } catch (error) {
+      console.log(error)
+    }
+  }
+
   useEffect(() => {
     fetchUserInfo()
   }, [])
 
-  emitter.on('unauthorized', ()=> {
+
+  useEffect(() => {
+    getChats()
+  }, [isConnected])
+
+  emitter.on('unauthorized', () => {
     navigate('/login')
   })
   return (
